@@ -1,15 +1,19 @@
 import fs from "node:fs/promises";
 import path from "node:path"
-import type { Details } from "./components/context/Details";
+import type { SubjectDetails } from "./components/context/Details";
+
+export type Subject = (details: SubjectDetails) => string
 
 interface Module {
   default: () => JSX.Element;
-  subject: (details: Details) => string;
+  // don't know the subject yet lol
+  subject: Subject;
 }
 
 export interface Template {
   Component: () => JSX.Element;
-  subject: (details: Details) => string;
+  // don't know the subject yet lol
+  subject: Subject;
 }
 
 export type Templates = {
@@ -17,7 +21,9 @@ export type Templates = {
 }
 
 export const getTemplates = async () => {
-  const templatesDir = path.join(__dirname, "./templates");
+  const templatesDir = path.join(process.cwd(), "./templates");
+
+  console.log({ templatesDir })
 
   const allFiles = await treeDir(templatesDir)
 

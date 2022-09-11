@@ -1,16 +1,13 @@
 import "dotenv/config";
 import "source-map-support/register";
 
-import { getEmail } from './getEmail';
+export { getEmail } from './getEmail';
 
-import { EmailProviders } from "./Providers";
-import { SendGrid } from "./providers/sendgrid";
+export { EmailProviders } from "./Providers";
+export { SendGrid } from "./providers/sendgrid";
 
-export {
-  getEmail,
-  EmailProviders,
-  SendGrid
-}
+export { useDetails } from "./components/context/Details"
+export type { Details } from "./components/context/Details"
 
 // const to = "nick@wylynko.com"
 // const from = "nick1014375@gmail.com"

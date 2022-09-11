@@ -1,24 +1,34 @@
 import sgMail from '@sendgrid/mail';
-import { Email } from '../getEmail';
+import type { Email } from '../getEmail';
+import type { Provider, ProviderConfig } from './types';
 
-const apiKey = process.env.SENDGRID_API_KEY;
-
-if (!apiKey) {
-  throw new Error(`the environment variable SENDGRID_API_KEY needs to be set`)
+interface SendGridConfig extends ProviderConfig {
+  apiKey: string;
 }
 
-sgMail.setApiKey(apiKey);
+export const SendGrid: Provider<SendGridConfig> = ({ apiKey }) => {
 
-export const send = async (email: Email): Promise<Email> => {
+  const name = `SendGrid`
 
-  const [ response ] = await sgMail.send(email);
+  sgMail.setApiKey(apiKey);
 
-  // check for failure
-  const status = response.statusCode.toString().split("")[0]
-  if (status === "4" || status === "5") {
-    throw new Error(`Sending failed with status code ${response.statusCode}`)
+  const send = async (email: Email): Promise<Email> => {
+
+    const [ response ] = await sgMail.send(email);
+  
+    // check for failure
+    const status = response.statusCode.toString().split("")[0]
+    if (status === "4" || status === "5") {
+      throw new Error(`Sending failed with status code ${response.statusCode}`)
+    }
+  
+    return email;
+  
   }
 
-  return email;
+  return {
+    name,
+    send
+  }
 
 }

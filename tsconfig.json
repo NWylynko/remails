@@ -3,6 +3,8 @@
   "compilerOptions": {
     "outDir": "dist",
     "jsx": "react",
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true,
+    "removeComments": true
   }
 }

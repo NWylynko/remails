@@ -1,5 +1,5 @@
 {
-  "name": "react-emails",
+  "name": "remail",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

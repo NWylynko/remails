@@ -1,17 +1,27 @@
 {
   "name": "remails",
   "version": "0.0.1",
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "repository": "github:nwylynko/remails",
+  "engines": {
+    "node": ">=18"
+  },
+
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc -w",
     "bin": "cp ./dist/bin.js ./dist/bin && chmod +x ./dist/bin",
-    "bin:watch": "nodemon --watch ./dist/bin.js --exec bun run bin"
+    "bin:watch": "nodemon --watch ./dist/bin.js --exec bun run bin",
+    "bump": "npx bumpp"
   },
   "bin": {
     "remails": "./dist/bin"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
     "@trycourier/courier": "^3.15.0",

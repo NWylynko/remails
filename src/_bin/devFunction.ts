@@ -9,10 +9,10 @@ export const devFunction = async () => {
   process.env['NODE_ENV'] = 'development';
 
   // run typescript here to pipe type errors out to the dev
-  spawn(`./node_modules/.bin/tsc --noEmit --watch`, { shell: true, stdio: "inherit" })
+  spawn(`./node_modules/.bin/tsc --allowJs --noEmit --watch`, { shell: true, stdio: "inherit" })
 
   // start typescript in watch mode here to actually compile to js
-  const tsc = spawn(`./node_modules/.bin/tsc --outDir ./.remails --watch`, { shell: true })
+  const tsc = spawn(`./node_modules/.bin/tsc --allowJs --outDir ./.remails --watch`, { shell: true })
 
   // additionally we listen for when its ready to run
   tsc.stdout.on("data", async (_message) => {

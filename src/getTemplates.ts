@@ -1,19 +1,31 @@
 import fs from "node:fs/promises";
 import path from "node:path"
-import type { SubjectDetails } from "./components/context/Details";
+import type { FetchDetails, SubjectDetails } from "./components/context/Details";
 
-export type Subject = (details: SubjectDetails) => string
+type EmptyFunction = () => Promise<void>
 
-interface Module {
-  default: () => JSX.Element;
-  // don't know the subject yet lol
-  subject: Subject;
+// allows the fetch function type to be passed through, if its not we assume they haven't defined a fetch function and default to void
+export type Subject <FetchFunction extends Fetch<any> = EmptyFunction, > = (details: SubjectDetails, props: { data: Awaited<ReturnType<FetchFunction>> } ) => string
+
+// fetch will either resolve to some real data or to void
+export type Fetch <Data, > = (EmptyFunction) | ((details: FetchDetails) => Promise<Data>)
+
+export type EmailTemplateProps <Data, > = { data: Data }
+
+// pretty similar to subject but returns a jsx component instead of a string
+export type EmailTemplate <FetchFunction extends Fetch<any> = EmptyFunction, > = (props: EmailTemplateProps<Awaited<ReturnType<FetchFunction>>>) => JSX.Element;
+
+type Shared = {
+  subject: Subject<any>;
+  fetch?: Fetch<any>;
 }
 
-export interface Template {
-  Component: () => JSX.Element;
-  // don't know the subject yet lol
-  subject: Subject;
+type Module = Shared & {
+  default: EmailTemplate<any>;
+}
+
+export type Template = Shared & {
+  Component: EmailTemplate<any>;
 }
 
 export type Templates = {
@@ -47,14 +59,14 @@ export const getTemplates = async () => {
 
     const module: Module = await import(filePath);
 
-    const { default: Component, subject } = module
+    const { default: Component, subject, fetch } = module
 
     const name = filePath
       .replace(templatesDir, "")
       .replace('/', "")
       .replace('.js', "")
 
-    templates[name] = { Component, subject }
+    templates[name] = { Component, subject, fetch }
   }
 
   return templates

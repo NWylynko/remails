@@ -10,7 +10,6 @@ export const SendGrid: Provider<SendGridConfig> = ({ apiKey }) => async () => {
   const name = `SendGrid`
 
   // attempt to import the package
-  // this will fail if the developer hasn't installed it
   const { default: sgMail } = await import('@sendgrid/mail')
 
   sgMail.setApiKey(apiKey);

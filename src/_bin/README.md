@@ -1,0 +1,1 @@
+this folder isn't just called 'bin' because ./bin.js gets renames ./bin to be run as a binary and that would overwrite the folder breaking things

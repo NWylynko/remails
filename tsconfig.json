@@ -4,7 +4,6 @@
     "outDir": "dist",
     "jsx": "react",
     "sourceMap": true,
-    "declaration": true,
-    "removeComments": true
+    "declaration": true
   }
 }

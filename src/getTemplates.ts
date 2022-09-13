@@ -22,6 +22,7 @@ type Shared = {
 
 type Module = Shared & {
   default: EmailTemplate<any>;
+  devFetch?: Fetch<any>;
 }
 
 export type Template = Shared & {
@@ -59,12 +60,19 @@ export const getTemplates = async () => {
 
     const module: Module = await import(filePath);
 
-    const { default: Component, subject, fetch } = module
+    const { default: Component, subject } = module
 
     const name = filePath
       .replace(templatesDir, "")
       .replace('/', "")
       .replace('.js', "")
+
+    const inDev = process.env.NODE_ENV === "development";
+
+    // if in dev mode, we want to use the dev fetch if it exists
+    // if its undefined then fallback to using the real fetch
+    // when in prod we just want to use the real fetch
+    const fetch = inDev ? module.devFetch !== undefined ? module.devFetch : module.fetch : module.fetch
 
     templates[name] = { Component, subject, fetch }
   }

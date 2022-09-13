@@ -5,6 +5,15 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "repository": "github:nwylynko/remails",
+  "keywords": [
+    "react",
+    "emails",
+    "templates",
+    "meta-framework",
+    "beautiful",
+    "html",
+    "markup"
+  ],
   "engines": {
     "node": ">=18"
   },

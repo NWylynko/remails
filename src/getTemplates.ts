@@ -35,7 +35,7 @@ export type Templates = {
 export const getTemplates = async () => {
   const templatesDir = path.join(process.cwd(), "./templates");
 
-  console.log({ templatesDir })
+  // console.log({ templatesDir })
 
   const allFiles = await treeDir(templatesDir)
 

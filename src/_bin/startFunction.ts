@@ -1,7 +1,6 @@
-import fs from "node:fs/promises";
-import path from "node:path";
+import "dotenv/config";
 import { spawn } from "node:child_process";
-import "dotenv/config"
+import path from "node:path";
 
 export const startFunction = async () => {
   console.log(`starting production Remails server`);

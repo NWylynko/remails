@@ -1,5 +1,3 @@
-import fs from "node:fs/promises";
-import path from "node:path";
 import { spawn } from "node:child_process";
 
 export const buildFunction = async () => {

@@ -4,6 +4,10 @@
 
 A Next.js inspired react framework for sending emails. Made to greatly simplify sending Emails and building email templates using React. This framework leaves itself very open to run however you would like to use it, for example you may add an Express or Fastify webserver and listen for requests in a webhook style. Alternatively you could add pubsub consumer and run whenever a new message/event comes in. You could even just implement it in to an existing api and call it directly on things like user sign-up.
 
+## Example
+
+Check out [nwylynko/remails-example](https://github.com/NWylynko/remails-example) for an example project.
+
 ## Setup
 
 1. Install Dependencies

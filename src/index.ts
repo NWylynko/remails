@@ -5,8 +5,7 @@ export { getEmail as renderEmail } from './getEmail';
 
 export { EmailProviders } from "./Providers";
 export { SendGrid } from "./providers/sendgrid";
-export { Success } from "./providers/successful";
-export { Fail } from "./providers/fail";
+export { TestProvider } from "./providers/testProvider";
 
 export { useDetails } from "./components/context/Details"
 export type { Details, SubjectDetails, FetchDetails } from "./components/context/Details"

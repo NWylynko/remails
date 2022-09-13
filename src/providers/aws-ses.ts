@@ -1,5 +1,3 @@
-import AWS from 'aws-sdk';
-
 import type { Email } from '../getEmail';
 import type { Provider, ProviderConfig } from './types';
 
@@ -10,6 +8,8 @@ type AWS_SESConfig = ProviderConfig & {
 export const AWS_SES: Provider<AWS_SESConfig> = (options) => async () => {
 
   const name = `AWS_SES`
+
+  const { default: AWS } = await import(`aws-sdk`)
 
   AWS.config.update({ region: options.region });
 

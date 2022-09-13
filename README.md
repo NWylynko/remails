@@ -58,11 +58,11 @@ export default WelcomeEmail;
 import { EmailProviders, SendGrid, renderEmail } from "remails"
 import { apiKey } from "./config"
 
-const emailProvider = EmailProviders([
-  SendGrid({ apiKey })
-]);
-
 (async () => {
+
+  const emailProvider = await EmailProviders([
+    SendGrid({ apiKey })
+  ]);
 
   // add in the sender and receiver
   const to = "..."
@@ -110,7 +110,7 @@ The returned object contains a function called `send` that you pass your email (
 import { EmailProviders, SendGrid } from "remails"
 
 // define this once
-const { send } = EmailProviders([
+const { send } = await EmailProviders([
   SendGrid({ apiKey })
 ]);
 
@@ -184,26 +184,41 @@ export const devFetch = async ({ to, from }: FetchDetails) => {
 ## Providers
 
 ### [SendGrid](https://sendgrid.com/)
+```bash
+yarn add @sendgrid/mail
+```
 ```typescript
 import { SendGrid } from "remails"
 ```
 
 ### [NodeMailer](https://nodemailer.com/)
+```bash
+yarn add nodemailer
+```
 ```typescript
 import { NodeMailer } from "remails"
 ```
 
 ### [AWS Simple Email Server](https://aws.amazon.com/ses/)
+```bash
+yarn add aws-sdk
+```
 ```typescript
 import { AWS_SES } from "remails"
 ```
 
 ### [Mailgun](https://www.mailgun.com/)
+```bash
+yarn add mailgun.js form-data
+```
 ```typescript
 import { MailGun } from "remails"
 ```
 
 ### [Postmark](https://postmarkapp.com/)
+```bash
+yarn add postmark
+```
 ```typescript
 import { Postmark } from "remails"
 ```

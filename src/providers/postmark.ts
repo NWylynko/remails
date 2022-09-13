@@ -1,5 +1,4 @@
-import postmark from "postmark";
-import { ClientOptions } from "postmark/dist/client/models";
+import type { ClientOptions } from "postmark/dist/client/models";
 
 import type { Email } from '../getEmail';
 import type { Provider, ProviderConfig } from './types';
@@ -12,6 +11,8 @@ type PostmarkConfig = ProviderConfig & {
 export const Postmark: Provider<PostmarkConfig> = (options) => async () => {
 
   const name = `Postmark`
+
+  const { default: postmark } = await import(`postmark`);
 
   const client = new postmark.ServerClient(options.serverToken, options.configOptions);
 

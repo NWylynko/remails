@@ -1,6 +1,4 @@
-import MG from 'mailgun.js';
 import type Options from "mailgun.js/interfaces/Options"
-import formData from "form-data"
 
 import type { Email } from '../getEmail';
 import type { Provider, ProviderConfig } from './types';
@@ -12,6 +10,9 @@ type MailGunConfig = ProviderConfig & Options & {
 export const MailGun: Provider<MailGunConfig> = (options) => async () => {
 
   const name = `MailGun`
+
+  const { default: MG } = await import(`mailgun.js`)
+  const { default: formData } = await import(`form-data`)
 
   const mailgun = new MG(formData)
 

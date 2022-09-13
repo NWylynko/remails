@@ -1,13 +1,15 @@
-import nodemailer from "nodemailer";
+import type { createTransport } from 'nodemailer';
 
 import type { Email } from '../getEmail';
 import type { Provider, ProviderConfig } from './types';
 
-type NodeMailerConfig = ProviderConfig & Parameters<typeof nodemailer.createTransport>[0]
+type NodeMailerConfig = ProviderConfig & Parameters<typeof createTransport>[0]
 
 export const NodeMailer: Provider<NodeMailerConfig> = (config) => async () => {
 
   const name = `NodeMailer`
+
+  const { default: nodemailer } = await import(`nodemailer`)
 
   const transporter = nodemailer.createTransport(config)
 

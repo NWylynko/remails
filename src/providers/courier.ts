@@ -1,5 +1,3 @@
-import { CourierClient } from '@trycourier/courier';
-
 import type { Email } from '../getEmail';
 import type { Provider, ProviderConfig } from './types';
 
@@ -19,6 +17,8 @@ interface CourierConfig extends ProviderConfig {
 export const Courier: Provider<CourierConfig> = ({ baseUrl, authorizationToken, routing }) => async () => {
 
   const name = `Courier`
+
+  const { CourierClient } = await import(`@trycourier/courier`)
 
   const courier = CourierClient({ baseUrl, authorizationToken });
 

@@ -1,6 +1,6 @@
 {
   "name": "remails",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -14,9 +14,15 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
+    "@trycourier/courier": "^3.15.0",
+    "aws-sdk": "^2.1214.0",
     "dotenv": "^16.0.2",
+    "form-data": "^4.0.0",
+    "mailgun.js": "^8.0.1",
     "nanohtml": "^1.10.0",
+    "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19",
+    "postmark": "^3.0.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "source-map-support": "^0.5.21"
@@ -24,6 +30,7 @@
   "devDependencies": {
     "@tsconfig/node18": "^1.0.1",
     "@types/node": "^18.7.16",
+    "@types/nodemailer": "^6.4.6",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "@types/source-map-support": "^0.5.6",

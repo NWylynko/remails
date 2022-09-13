@@ -7,7 +7,7 @@ type AWS_SESConfig = ProviderConfig & {
   region: string;
 }
 
-export const AWS_SES: Provider<AWS_SESConfig> = (options) => {
+export const AWS_SES: Provider<AWS_SESConfig> = (options) => async () => {
 
   const name = `AWS_SES`
 

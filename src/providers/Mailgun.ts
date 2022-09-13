@@ -9,7 +9,7 @@ type MailGunConfig = ProviderConfig & Options & {
   domain: string;
 }
 
-export const MailGun: Provider<MailGunConfig> = (options) => {
+export const MailGun: Provider<MailGunConfig> = (options) => async () => {
 
   const name = `MailGun`
 

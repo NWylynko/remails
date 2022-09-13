@@ -5,7 +5,7 @@ interface TestProviderConfig extends ProviderConfig {
   outcome: "fail" | "succeed";
 }
 
-export const TestProvider: Provider<TestProviderConfig> = ({ outcome }) => {
+export const TestProvider: Provider<TestProviderConfig> = ({ outcome }) => async () => {
 
   const name = `Test Provider`
 

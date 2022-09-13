@@ -9,7 +9,7 @@ type PostmarkConfig = ProviderConfig & {
   configOptions?: ClientOptions.Configuration
 }
 
-export const Postmark: Provider<PostmarkConfig> = (options) => {
+export const Postmark: Provider<PostmarkConfig> = (options) => async () => {
 
   const name = `Postmark`
 

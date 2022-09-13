@@ -16,7 +16,7 @@ interface CourierConfig extends ProviderConfig {
 // for now I am not going to export it from index, but
 // people can still import it directly if they want to test it
 
-export const Courier: Provider<CourierConfig> = ({ baseUrl, authorizationToken, routing }) => {
+export const Courier: Provider<CourierConfig> = ({ baseUrl, authorizationToken, routing }) => async () => {
 
   const name = `Courier`
 

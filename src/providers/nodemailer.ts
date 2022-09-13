@@ -5,7 +5,7 @@ import type { Provider, ProviderConfig } from './types';
 
 type NodeMailerConfig = ProviderConfig & Parameters<typeof nodemailer.createTransport>[0]
 
-export const NodeMailer: Provider<NodeMailerConfig> = (config) => {
+export const NodeMailer: Provider<NodeMailerConfig> = (config) => async () => {
 
   const name = `NodeMailer`
 

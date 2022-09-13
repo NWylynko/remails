@@ -9,11 +9,31 @@ export const EmailProviders = async (_providers: (() => Promise<ProviderFunction
 
   for await (const providerFn of _providers) {
     try {
+
+      // this imports and sets up the provider
       const provider = await providerFn();
 
       providers.push(provider)
+
     } catch (error) {
-      console.error(error)
+      const errorString = String(error);
+      if (errorString.startsWith(`Error: Cannot find module`)) {
+        // we need to tell the dev to install the package
+        const errorLines = errorString.split('\n')
+        const errorMessage = errorLines[0];
+        const errorStrings = errorMessage.split(' ');
+        const packageName = errorStrings[4];
+
+        console.error(`\n\nyou need to install ${packageName}`);
+        console.error(`install it with your package manager: \n`)
+        console.error(`yarn add ${packageName}`)
+        console.error(`npm install ${packageName}`)
+        console.error(`pnpm add ${packageName}`)
+        console.error(`bun add ${packageName}\n\n`)
+
+      }
+
+      throw error
     }
   }
 

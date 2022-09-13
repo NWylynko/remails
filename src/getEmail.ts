@@ -8,7 +8,8 @@ type EmailDetails = FetchDetails & {
 
 export type Email = Details & {
   html: string,
-  subject: string
+  subject: string,
+  data: any;
 }
 
 export const getEmail = async ({ template, to, from }: EmailDetails): Promise<Email> => {
@@ -22,6 +23,7 @@ export const getEmail = async ({ template, to, from }: EmailDetails): Promise<Em
     html,
     subject,
     to,
-    from
+    from,
+    data
   }
 }

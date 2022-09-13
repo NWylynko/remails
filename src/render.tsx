@@ -41,13 +41,9 @@ const htmlContainer = (body: string) =>
           table,
           td,
           div,
-          h1,
+          h1, h2, h3, h4, h5, h6
           p {
             font-family: Arial, sans-serif;
-          }
-          table,
-          td {
-            border: 2px solid #000000 !important;
           }
         </style>
       </head>

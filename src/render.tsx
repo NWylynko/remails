@@ -1,5 +1,5 @@
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToStaticMarkup } from "react-dom/server";
 import { DetailsProvider, Details } from "./components/context/Details";
 
 type Options = Details;
@@ -13,5 +13,5 @@ export const render = (Component: () => JSX.Element, options: Options) => {
     </>
   );
 
-  return renderToString(App);
+  return renderToStaticMarkup(App);
 };

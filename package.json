@@ -1,6 +1,6 @@
 {
   "name": "remails",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,21 +30,42 @@
     "source-map-support": "^0.5.21"
   },
   "devDependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "@trycourier/courier": "^3.15.0",
     "@tsconfig/node18": "^1.0.1",
     "@types/node": "^18.7.16",
     "@types/nodemailer": "^6.4.6",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "@types/source-map-support": "^0.5.6",
-    "typescript": "^4.8.3"
-  },
-  "optionalDependencies": {
-    "@sendgrid/mail": "^7.7.0",
-    "@trycourier/courier": "^3.15.0",
     "aws-sdk": "^2.1214.0",
     "form-data": "^4.0.0",
     "mailgun.js": "^8.0.1",
     "nodemailer": "^6.7.8",
-    "postmark": "^3.0.14"
+    "postmark": "^3.0.14",
+    "typescript": "^4.8.3"
+  },
+  "peerDependenciesMeta": {
+    "@sendgrid/mail": {
+      "optional": true
+    },
+    "@trycourier/courier": {
+      "optional": true
+    },
+    "aws-sdk": {
+      "optional": true
+    },
+    "form-data": {
+      "optional": true
+    },
+    "mailgun.js": {
+      "optional": true
+    },
+    "nodemailer": {
+      "optional": true
+    },
+    "postmark": {
+      "optional": true
+    }
   }
 }

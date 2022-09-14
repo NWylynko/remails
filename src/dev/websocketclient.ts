@@ -1,14 +1,35 @@
 
-const ws = new WebSocket('ws://localhost:3000/ws');
+const mainHomePageWS = () => {
+  const ws = new WebSocket('ws://localhost:3000/ws');
 
-console.log(ws)
+  // console.log(ws)
 
-ws.onopen = (event => {
-  console.log(`websocket connection opened`, event)
-  ws.send("Here's some text that the server is urgently awaiting!");
+  // ws.onopen = (event => {
+  //   console.log(`websocket connection opened`, event)
+  // })
 
-})
+  const listElement = document.getElementById("templates-list");
 
-ws.onmessage = (event => {
-  console.log(`recieved message from server`, event)
-})
+  ws.onmessage = (event => {
+    const list = JSON.parse(event.data) as string[]
+
+    while (listElement?.lastChild) {
+      listElement.removeChild(listElement.lastChild);
+    }
+
+    for (const name of list) {
+
+      const link = document.createElement('a')
+      link.href = `/template/${name}`
+      link.innerText = name;
+      link.style["color"] = "black";
+
+      const listItem = document.createElement('li')
+      listItem.appendChild(link)
+
+      listElement?.appendChild(listItem);
+    }
+  })
+}
+
+mainHomePageWS();

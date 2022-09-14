@@ -1,5 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { getTemplate } from "../getTemplate";
+import { getTemplates } from "../getTemplates";
+
 import { render } from "./renderTemplate";
 import html from "nanohtml";
 import raw from "nanohtml/raw";
@@ -8,7 +9,15 @@ export const templateHandler = async (req: FastifyRequest, res: FastifyReply) =>
 
   const templateName = (req.params as any)["*"] as string;
 
-  const template = await getTemplate(templateName, "./.remails/templates");
+  // can't use this as it caches the template
+  // const template = await getTemplate(templateName, "./.remails/templates");
+
+  const templates = await getTemplates("./.remails/templates")
+  const template = templates.get(templateName)
+
+  if (!template) {
+    throw new Error(`that template doesn't exist`)
+  }
 
   const to = "to-test@email.com"
   const from = "from-test@email.com"
@@ -26,6 +35,7 @@ const htmlContainer = (body: string) =>
     <!DOCTYPE html>
     <html lang="en">
       <head>
+        <script src="/websocketclientTemplate.js" type="module"></script>
         <style>
           table,
           td,

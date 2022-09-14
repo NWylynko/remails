@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { getTemplateFiles } from "../getTemplates";
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToStaticMarkup } from "react-dom/server";
+import { getTemplateFiles } from "../getTemplates";
 
 interface AppProps {
   templates: string[];
@@ -20,7 +20,7 @@ const App = ({ templates }: AppProps) => {
         </head>
         <body style={{ fontFamily: "'Noto Sans', sans-serif" }}>
           <h1>Hello World</h1>
-          <ul>
+          <ul id="templates-list">
             {templates.map((name) => (
               <li key={name}>
                 <a style={{ color: "black" }} href={`/template/${name}`}>
@@ -40,5 +40,5 @@ export const homePageHandler = async (req: FastifyRequest, res: FastifyReply) =>
   const templates = templateFiles.map(({ name }) => name);
 
   res.header("Content-Type", "text/html");
-  return renderToString(<App templates={templates} />);
+  return renderToStaticMarkup(<App templates={templates} />);
 };

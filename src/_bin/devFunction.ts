@@ -25,15 +25,16 @@ export const devFunction = async () => {
 
   //     // we need a list of the templates
   //     const templateFiles = await getTemplateFiles(".remails/templates")
+  //     const templates = templateFiles.map(({ name }) => name);
 
   //     // send this on websocket to tell client the list of templates
-  //     console.log({ templateFiles })
+  //     console.log({ templates })
 
 
   //   }
 
   // })
 
-  const stopServer = await startServer()
+  const stopServer = await startServer({ tsc })
 
 };

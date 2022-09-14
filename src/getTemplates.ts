@@ -34,9 +34,9 @@ export type Template = Shared & {
   Component: EmailTemplate<any>;
 };
 
-export const getTemplates = async () => {
+export const getTemplates = async (templatePath: string = "./templates") => {
 
-  const templateFiles = await getTemplateFiles("./templates")
+  const templateFiles = await getTemplateFiles(templatePath)
 
   const templates = new Map<string, Template>();
 

@@ -3,7 +3,7 @@ import { getTemplates, Template } from "./getTemplates"
 
 let templates: Map<string, Template>;
 
-export const getTemplate = async (name: string): Promise<Template> => {
+export const getTemplate = async (name: string, templatePath: string = "./templates"): Promise<Template> => {
   if (templates) {
 
     const template = templates.get(name)
@@ -16,10 +16,10 @@ export const getTemplate = async (name: string): Promise<Template> => {
 
   } else {
 
-    templates = await getTemplates();
+    templates = await getTemplates(templatePath);
 
     // called recursively :)
-    return getTemplate(name);
+    return getTemplate(name, templatePath);
 
   }
 }
